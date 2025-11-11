@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Visual Novel Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="screen active">
+            <div class="container">
+                <h1>🎮 AI Visual Novel Generator</h1>
+                <p class="subtitle">Create your own unique interactive story</p>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="showPreferences()">
+                        ✨ Create New Story
+                    </button>
+                    <button class="btn btn-secondary" onclick="showSavedStories()">
+                        📚 Play Saved Stories
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preferences Screen -->
+        <div id="preferences-screen" class="screen">
+            <div class="container">
+                <h2>Story Preferences</h2>
+                <p>Tell us what kind of story you'd like to experience:</p>
+
+                <form id="preferences-form">
+                    <div class="form-group">
+                        <label for="genre">Genre:</label>
+                        <select id="genre" name="genre" required>
+                            <option value="">Select a genre...</option>
+                            <option value="fantasy">Fantasy</option>
+                            <option value="sci-fi">Science Fiction</option>
+                            <option value="mystery">Mystery</option>
+                            <option value="horror">Horror</option>
+                            <option value="romance">Romance</option>
+                            <option value="adventure">Adventure</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tone">Tone:</label>
+                        <select id="tone" name="tone" required>
+                            <option value="">Select a tone...</option>
+                            <option value="lighthearted">Lighthearted</option>
+                            <option value="serious">Serious</option>
+                            <option value="dark">Dark</option>
+                            <option value="comedic">Comedic</option>
+                            <option value="dramatic">Dramatic</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="setting">Setting:</label>
+                        <select id="setting" name="setting" required>
+                            <option value="">Select a setting...</option>
+                            <option value="medieval">Medieval</option>
+                            <option value="modern">Modern Day</option>
+                            <option value="futuristic">Futuristic</option>
+                            <option value="post-apocalyptic">Post-Apocalyptic</option>
+                            <option value="victorian">Victorian Era</option>
+                            <option value="ancient">Ancient Times</option>
+                        </select>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="showWelcome()">
+                            ← Back
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Generate Story →
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Loading Screen -->
+        <div id="loading-screen" class="screen">
+            <div class="container">
+                <div class="loading-spinner"></div>
+                <h2>Crafting your story...</h2>
+                <p id="loading-message">This may take 1-2 minutes</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Saved Stories Screen -->
+        <div id="saved-stories-screen" class="screen">
+            <div class="container">
+                <h2>Saved Stories</h2>
+                <div id="saved-stories-list"></div>
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="showWelcome()">
+                        ← Back
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div class="game-container">
+                <div class="game-header">
+                    <h3 id="story-title"></h3>
+                    <button class="btn btn-small" onclick="quitStory()">Exit Story</button>
+                </div>
+
+                <div class="scene-display">
+                    <div class="scene-image">
+                        <img id="scene-img" src="" alt="Scene">
+                        <div class="image-loading" id="image-loading">Loading image...</div>
+                    </div>
+
+                    <div class="scene-text">
+                        <div id="scene-content"></div>
+
+                        <div class="choices" id="choices-container"></div>
+
+                        <div class="navigation" id="navigation-container">
+                            <button class="btn btn-primary" onclick="nextScene()">
+                                Continue →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ending Screen -->
+        <div id="ending-screen" class="screen">
+            <div class="container">
+                <h2>The End</h2>
+                <div id="ending-content"></div>
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="showWelcome()">
+                        Create Another Story
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
