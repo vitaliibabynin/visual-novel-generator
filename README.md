@@ -19,6 +19,18 @@ An interactive web-based visual novel generator that creates unique stories with
 4. Player makes choices that affect the story outcome
 5. Stories are saved for replay
 
+## 🌐 Deployment
+
+Ready to host your visual novel generator online? See **[DEPLOYMENT.md](DEPLOYMENT.md)** for detailed guides on:
+
+- **Render.com** (Free tier, easiest)
+- **Railway** ($5/month, fastest)
+- **Fly.io** (Best free tier)
+- **DigitalOcean** (Full control)
+- And more...
+
+**Quick deploy:** Can be live in 5 minutes on Render.com or Railway!
+
 ## Tech Stack
 
 **Backend:**

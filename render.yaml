@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: visual-novel-generator
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: IMAGE_PROVIDER
+        value: openai
+      - key: PORT
+        value: 5000
+      - key: FLASK_ENV
+        value: production
+    disk:
+      name: story-data
+      mountPath: /opt/render/project/src/stories
+      sizeGB: 1
