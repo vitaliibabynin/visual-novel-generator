@@ -55,24 +55,29 @@ function animateProgress() {
     }, 800);
 }
 
-// Form submission
-document.getElementById('preferences-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Form submission
+    document.getElementById('preferences-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-    const preferences = {
-        genre: document.getElementById('genre').value,
-        tone: document.getElementById('tone').value,
-        setting: document.getElementById('setting').value
-    };
+        const preferences = {
+            genre: document.getElementById('genre').value,
+            tone: document.getElementById('tone').value,
+            setting: document.getElementById('setting').value
+        };
 
-    await generateStory(preferences);
+        await generateStory(preferences);
+    });
 });
 
 // Generate story
 async function generateStory(preferences) {
+    console.log('Generating story with preferences:', preferences);
     showLoading();
 
     try {
+        console.log('Sending request to API...');
         const response = await fetch(`${API_BASE}/api/generate-story`, {
             method: 'POST',
             headers: {
@@ -81,9 +86,12 @@ async function generateStory(preferences) {
             body: JSON.stringify({ preferences })
         });
 
+        console.log('Response received:', response.status);
         const data = await response.json();
+        console.log('Data:', data);
 
         if (data.success) {
+            console.log('Story generated successfully!');
             // Complete progress bar
             document.getElementById('progress-fill').style.width = '100%';
 
@@ -92,6 +100,7 @@ async function generateStory(preferences) {
                 startStory();
             }, 500);
         } else {
+            console.error('Story generation failed:', data.error);
             alert('Error generating story: ' + data.error);
             showPreferences();
         }

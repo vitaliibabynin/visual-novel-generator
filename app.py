@@ -24,6 +24,19 @@ storage = StoryStorage()
 def index():
     return send_from_directory('static', 'index.html')
 
+# Serve static files explicitly
+@app.route('/style.css')
+def serve_css():
+    return send_from_directory('static', 'style.css')
+
+@app.route('/app.js')
+def serve_js():
+    return send_from_directory('static', 'app.js')
+
+@app.route('/images/<path:filename>')
+def serve_image(filename):
+    return send_from_directory('static/images', filename)
+
 @app.route('/api/generate-story', methods=['POST'])
 def generate_story():
     """Generate a new story based on user preferences"""
